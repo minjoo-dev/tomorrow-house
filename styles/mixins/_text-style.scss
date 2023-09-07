@@ -25,7 +25,6 @@
   font-size: $font-size-18;
   line-height: $line-height-18;
   letter-spacing: $letter-spacing-18;
-  color: $color;
 }
 
 @mixin text-style-24() {
@@ -39,19 +38,19 @@
     @include text-style-12;
   }
   @if ($size == 13) {
-    @include text-style-12;
+    @include text-style-13;
   }
   @if ($size == 14) {
-    @include text-style-12;
+    @include text-style-14;
   }
   @if ($size == 16) {
-    @include text-style-12;
+    @include text-style-16;
   }
   @if ($size == 18) {
-    @include text-style-12;
+    @include text-style-18;
   }
   @if ($size == 24) {
-    @include text-style-12;
+    @include text-style-24;
   }
 
   @if (type-of($color) == color) {
