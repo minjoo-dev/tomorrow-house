@@ -1,6 +1,8 @@
 %avartar-base {
   display: block;
   overflow: hidden;
+  background: url('./assets/images/img-user-default.png') center no-repeat;
+  background-size: contain;
   border-radius: 50%;
 
   img {
