@@ -51,6 +51,7 @@
   .thumbnail-list {
     @include flexbox(start);
     padding-left: 2px;
+    margin-bottom: 20px;
     overflow-x: auto;
 
     &::-webkit-scrollbar {
@@ -96,6 +97,7 @@
 
     .thumbnail-list {
       padding-left: 0;
+      margin-bottom: 80px;
     }
 
     .thumbnail-item {
