@@ -17,6 +17,7 @@
   .lnb {
     top: $gnb-height-sm;
     z-index: $lnb-level;
+    border-bottom: 1px solid $border;
   }
 
   @include responsive(T) {

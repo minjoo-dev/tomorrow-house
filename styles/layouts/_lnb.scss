@@ -11,7 +11,6 @@
     padding: 0 #{$grid-margin - $lnb-link-padding};
     margin-left: -#{$grid-margin};
     white-space: nowrap;
-    border-bottom: 1px solid $border;
   }
 
   &-item {
@@ -39,7 +38,6 @@
   @include responsive(T) {
     height: $lnb-height-md;
     overflow-x: visible;
-    border-bottom: 1px solid $border;
 
     &-list {
       height: auto;
