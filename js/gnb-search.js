@@ -7,10 +7,16 @@ const deleteAllButton = gnbSearchHistory.querySelector(
   '.search-history-header button'
 )
 
-function cloaseGnbSearhHistory(e) {
+const deleteButtonList = gnbSearchHistoryList.querySelectorAll('.delete-button')
+
+function cloaseGnbSearhHistory() {
+  gnbSearchHistory.classList.remove('is-active')
+  window.removeEventListener('click', cloaseGnbSearhHistoryOnClickingOutside)
+}
+
+function cloaseGnbSearhHistoryOnClickingOutside(e) {
   if (!gnbSearch.contains(e.target)) {
-    gnbSearchHistory.classList.remove('is-active')
-    window.removeEventListener('click', cloaseGnbSearhHistory)
+    cloaseGnbSearhHistory()
   }
 }
 
@@ -20,7 +26,7 @@ function openGnbSearhHistory() {
   }
 
   if (!gnbSearchHistory.classList.contains('is-active')) {
-    window.addEventListener('click', cloaseGnbSearhHistory)
+    window.addEventListener('click', cloaseGnbSearhHistoryOnClickingOutside)
   }
   gnbSearchHistory.classList.add('is-active')
 }
@@ -29,7 +35,21 @@ gnbSearchInput.addEventListener('focus', openGnbSearhHistory)
 
 function deleteAllSearchHistoryItems() {
   gnbSearchHistoryList.innerHTML = ''
-  gnbSearchHistory.classList.remove('is-active')
+  cloaseGnbSearhHistory()
 }
 
 deleteAllButton.addEventListener('click', deleteAllSearchHistoryItems)
+
+function deleteSearchHistofyItem(e) {
+  e.stopPropagation()
+  const itemToDelete = this.parentNode
+  gnbSearchHistoryList.removeChild(itemToDelete)
+
+  if (gnbSearchHistoryList.children.length === 0) {
+    cloaseGnbSearhHistory()
+  }
+}
+
+deleteButtonList.forEach((button) => {
+  button.addEventListener('click', deleteSearchHistofyItem)
+})
