@@ -63,5 +63,38 @@ function detectTabPanelPosition() {
   })
 }
 
+function updateActiveTabOnScroll() {
+  // 1. 현재 유저가 얼마만큼 스크롤을 했느냐 => window.scrollY
+  // 2. 각 tabPanel y축 위치 => productTabPanelPostionMap 통해 알 수 있음
+
+  const scrolledAmount =
+    window.scrollY +
+    (window.innerWidth >= 768 ? TOP_HEADER_DESKTOP + 80 : TOP_HEADER_MOBILE + 8)
+
+  let newActiveTab
+  if (scrolledAmount >= productTabPanelPostionMap['product-recommendation']) {
+    newActiveTab = productTabButtonList[4] // 추천 버튼
+  } else if (scrolledAmount >= productTabPanelPostionMap['product-shipment']) {
+    newActiveTab = productTabButtonList[3] // 배송/환불 버튼
+  } else if (scrolledAmount >= productTabPanelPostionMap['product-inquiry']) {
+    newActiveTab = productTabButtonList[2] // 문의 버튼
+  } else if (scrolledAmount >= productTabPanelPostionMap['product-review']) {
+    newActiveTab = productTabButtonList[1] // 리뷰 버튼
+  } else {
+    newActiveTab = productTabButtonList[0] // 상품정보 버튼
+  }
+
+  if (newActiveTab) {
+    newActiveTab = newActiveTab.parentNode
+
+    if (newActiveTab !== currentActiveTab) {
+      newActiveTab.classList.add('is-active')
+      currentActiveTab.classList.remove('is-active')
+      currentActiveTab = newActiveTab
+    }
+  }
+}
+
 window.addEventListener('load', detectTabPanelPosition)
 window.addEventListener('resize', detectTabPanelPosition)
+window.addEventListener('scroll', updateActiveTabOnScroll)
